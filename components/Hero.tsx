@@ -1,55 +1,49 @@
+import { wedding } from "@/data/wedding";
+
 const imageKitUrl =
-  process.env.IMGAE_KIT_URl!;
+  process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT ??
+  process.env.IMGAE_KIT_URl ??
+  "";
 
 export default function Hero() {
   return (
-    <section className="relative h-screen min-h-[650px] w-full overflow-hidden">
-      {/* Hero Video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster={`${imageKitUrl}/ashber-drifa/hero/poster.jpg`}
-        className="absolute inset-0 h-full w-full object-cover"
-      >
-        <source
-          src={`${imageKitUrl}/ashber-drifa/hero/hero-video.mp4`}
-          type="video/mp4"
-        />
-      </video>
+    <section className="relative flex min-h-[680px] h-[92svh] max-h-[1100px] w-full items-center justify-center overflow-hidden bg-[#302e29] text-white">
+      {imageKitUrl ? (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={`${imageKitUrl}/ashber-drifa/hero/poster.jpg`}
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src={`${imageKitUrl}/ashber-drifa/hero/hero-video.mp4`} type="video/mp4" />
+        </video>
+      ) : null}
+      <div className="absolute inset-0 bg-black/35" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/35" />
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/25" />
-
-      {/* Content */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-white">
-        <p className="mb-6 text-xs uppercase tracking-[0.4em]">
-          Our Wedding
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-6 text-center">
+        <p className="mb-8 text-[10px] uppercase tracking-[0.42em] text-white/80 sm:text-xs">
+          The beginning of forever
         </p>
-
-        <h1 className="font-serif text-6xl font-light leading-none md:text-8xl">
-          {`Groom`}
-          <span className="mx-3 font-light italic">&</span>
-          {`Bride`}
+        <h1 className="font-editorial text-[clamp(4rem,12vw,9.5rem)] font-normal leading-[.88] tracking-[-0.055em]">
+          {wedding.groom}
+          <span className="mx-3 inline-block font-normal italic text-white/75 sm:mx-6">&</span>
+          {wedding.bride}
         </h1>
-
-        <p className="mt-8 text-sm uppercase tracking-[0.3em]">
-          20 · 12 · 2026
-        </p>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-white">
-        <div className="flex flex-col items-center gap-3">
-          <span className="text-[10px] uppercase tracking-[0.3em]">
-            Explore
-          </span>
-
-          <span className="h-10 w-px bg-white/70" />
+        <div className="mt-10 flex items-center gap-4 text-[10px] uppercase tracking-[0.28em] text-white/85 sm:text-xs">
+          <span>{wedding.date}</span>
+          <span className="h-px w-7 bg-white/60" />
+          <span>{wedding.location}, India</span>
         </div>
       </div>
+
+      <a href="#the-story" className="absolute bottom-9 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3 text-[9px] uppercase tracking-[0.3em] text-white/80">
+        Discover our story
+        <span className="h-10 w-px bg-white/60" />
+      </a>
     </section>
   );
 }
