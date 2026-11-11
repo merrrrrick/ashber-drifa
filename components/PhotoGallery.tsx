@@ -5,58 +5,42 @@ import { motion } from "motion/react";
 import IKImage from "./IKImage";
 import Lightbox from "./Lightbox";
 
-interface PhotoGalleryProps {
-  images: string[];
-}
+interface PhotoGalleryProps { images: string[]; }
 
-export default function PhotoGallery({
-  images,
-}: PhotoGalleryProps) {
-  const [activeIndex, setActiveIndex] =
-    useState<number | null>(null);
+export default function PhotoGallery({ images }: PhotoGalleryProps) {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const previous = () => {
-    if (activeIndex === null) return;
-
-    setActiveIndex(
-      activeIndex === 0
-        ? images.length - 1
-        : activeIndex - 1
-    );
+    if (activeIndex !== null) setActiveIndex((activeIndex - 1 + images.length) % images.length);
   };
-
   const next = () => {
-    if (activeIndex === null) return;
-
-    setActiveIndex(
-      activeIndex === images.length - 1
-        ? 0
-        : activeIndex + 1
-    );
+    if (activeIndex !== null) setActiveIndex((activeIndex + 1) % images.length);
   };
+
+  if (!images.length) {
+    return <p className="py-20 text-center font-editorial text-2xl italic text-[#817d73]">Photographs will be added soon.</p>;
+  }
 
   return (
     <>
-      <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
+      <div className="gallery-columns">
         {images.map((image, index) => (
           <motion.button
             key={image}
             type="button"
             onClick={() => setActiveIndex(index)}
-            className="group mb-4 block w-full overflow-hidden text-left"
-            initial={{ opacity: 0, y: 20 }}
+            aria-label={`Open wedding photograph ${index + 1}`}
+            className="gallery-item group cursor-zoom-in overflow-hidden bg-[#e9e5dc] text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#817d73]"
+            initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{
-              duration: 0.6,
-              delay: Math.min(index * 0.03, 0.3),
-            }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.65, delay: Math.min(index % 5 * 0.045, 0.18) }}
           >
             <IKImage
               src={image}
-              alt={`Wedding photograph ${index + 1}`}
-              width={1200}
-              className="h-auto w-full object-cover transition duration-700 ease-out group-hover:scale-[1.02]"
+              alt={`Ashber and Drifa wedding photograph ${index + 1}`}
+              width={1400}
+              className="h-auto w-full"
             />
           </motion.button>
         ))}
