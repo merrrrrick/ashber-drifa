@@ -1,48 +1,30 @@
-"use client";
+import { imageKitUrl } from "@/lib/imagekit";
 
 interface IKImageProps {
   src: string;
   alt?: string;
   className?: string;
   width?: number;
-  height?: number;
   priority?: boolean;
+  transformations?: string;
 }
-
-const IMAGEKIT_URL =
-  process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT ??
-  process.env.IMGAE_KIT_URl ??
-  "";
 
 export default function IKImage({
   src,
   alt = "",
   className = "",
   width = 1800,
-  height,
   priority = false,
+  transformations,
 }: IKImageProps) {
-  const transformation = [`w-${width}`, "q-85", "f-auto"].join(",");
-  const url = IMAGEKIT_URL ? `${IMAGEKIT_URL.replace(/\/$/, "")}/${src}?tr=${transformation}` : "";
-
+  const url = imageKitUrl(src, transformations ?? "w-" + width + ",q-85,f-auto");
   if (!url) {
     return (
-      <div className={`flex aspect-[4/3] w-full items-center justify-center bg-[#e9e5dc] text-[10px] uppercase tracking-[0.2em] text-[#817d73] ${className}`}>
-        ImageKit URL not configured
+      <div role="img" aria-label={alt || "Wedding photograph unavailable"} className={"flex aspect-[4/3] w-full items-center justify-center bg-[var(--paper-deep)] text-[10px] uppercase tracking-[0.18em] text-[var(--muted)] " + className}>
+        Image unavailable
       </div>
     );
   }
-
-  return (
-    <img
-      src={url}
-      alt={alt}
-      width={width}
-      height={height}
-      loading={priority ? "eager" : "lazy"}
-      fetchPriority={priority ? "high" : "auto"}
-      decoding="async"
-      className={className}
-    />
-  );
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={url} alt={alt} width={width} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} decoding="async" className={className} />;
 }
