@@ -7,7 +7,7 @@ import { wedding } from "@/data/wedding";
 import { imageKitUrl } from "@/lib/imagekit";
 
 const monogramUrl = imageKitUrl(
-  "ashber-drifa/branding/monogram.png",
+  "ashber-drifa/hero/monogram.png",
   "w-240,h-240,q-90,f-auto"
 );
 
