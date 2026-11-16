@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { wedding } from "@/data/wedding";
 import { imageKitUrl } from "@/lib/imagekit";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const monogramUrl = imageKitUrl(
   "ashber-drifa/hero/monogram.png",
@@ -58,6 +59,7 @@ export default function Navigation() {
             );
           })}
         </div>
+        <ThemeToggle />
       </div>
     </nav>
   );
