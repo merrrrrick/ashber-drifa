@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import Hero from "@/components/Hero";
 import Navigation from "@/components/Navigation";
 import IKImage from "@/components/IKImage";
+import Footer from "@/components/Footer";
 import { wedding } from "@/data/wedding";
 
 const chapterCovers: Record<string, string> = {
@@ -12,65 +14,65 @@ const chapterCovers: Record<string, string> = {
   reception: "ashber-drifa/reception/HUS01249.jpg",
 };
 
+const chapterLayouts: Record<string, string> = {
+  groom: "md:col-span-7",
+  bride: "md:col-span-5",
+  nuptials: "md:col-span-12",
+  photoshoot: "md:col-span-5",
+  reception: "md:col-span-7",
+};
+
 export default function Home() {
   return (
     <main className="bg-[var(--paper)]">
       <Hero />
       <Navigation />
 
-      <section id="the-story" className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-7 text-[10px] uppercase tracking-[0.36em] text-[#817d73]">A day, a thousand memories</p>
-          <h2 className="font-editorial text-5xl font-normal leading-[1.05] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
-            Two stories.<br /><span className="italic text-[#8c8376]">One beautiful beginning.</span>
+      <section id="the-story" className="flex min-h-[560px] items-center py-24 sm:min-h-[640px] sm:py-32">
+        <div className="page-shell grid w-full gap-12 md:grid-cols-[1.2fr_0.8fr] md:items-end md:gap-20">
+          <h2 className="display-heading max-w-[850px] text-[clamp(3.5rem,8vw,7.4rem)]">
+            A day we will <span className="italic text-[var(--wine)]">keep</span> forever.
           </h2>
-          <p className="mx-auto mt-8 max-w-xl text-sm leading-8 text-[#77736b] sm:text-base">
-            Some days stay with us forever. This is a little collection of the people, places and moments that made our day unforgettable.
-          </p>
-          <p className="mt-8 font-editorial text-xl italic text-[#817d73]">{wedding.groom} & {wedding.bride}</p>
+          <div className="max-w-md pb-2 md:justify-self-end">
+            <p className="text-base leading-8 text-[var(--muted)] sm:text-lg sm:leading-9">
+              The best days are made of little moments — familiar faces, happy tears, loud laughter and the people who make everything feel like home.
+            </p>
+            <p className="mt-7 font-editorial text-2xl italic text-[var(--ink)]">This is ours.</p>
+          </div>
         </div>
       </section>
 
-      <section className="border-y border-[var(--line)] bg-[#f0ede6]">
-        <div className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
-          <div className="mb-12 flex items-end justify-between gap-6">
-            <div>
-              <p className="mb-4 text-[10px] uppercase tracking-[0.32em] text-[#817d73]">The wedding album</p>
-              <h2 className="font-editorial text-4xl tracking-[-0.04em] sm:text-5xl">Explore the chapters</h2>
-            </div>
-            <span className="hidden text-[10px] uppercase tracking-[0.22em] text-[#817d73] sm:block">01 — 05</span>
+      <section id="chapters" className="bg-[#eae5dc] py-16 sm:py-20 lg:py-24">
+        <div className="page-shell">
+          <div className="mb-10 flex flex-col justify-between gap-4 sm:mb-14 sm:flex-row sm:items-end">
+            <h2 className="display-heading text-5xl sm:text-6xl lg:text-7xl">The wedding album</h2>
+            <p className="max-w-xs text-sm leading-7 text-[var(--muted)]">Five chapters. One day. A lifetime of memories.</p>
           </div>
 
-          <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-6 lg:gap-x-7">
-            {wedding.sections.map((section) => (
-              <Link href={`/${section.slug}`} key={section.slug} className="group block lg:col-span-3">
-                <div className="relative overflow-hidden bg-[#e4dfd5]">
-                  <IKImage
-                    src={chapterCovers[section.slug]}
-                    alt={`${section.name} chapter`}
-                    width={1600}
-                    className="aspect-[16/9] w-full object-cover transition duration-1000 ease-out group-hover:scale-[1.025]"
-                  />
-                  <span className="absolute left-4 top-4 bg-[#f7f5f0]/90 px-3 py-2 text-[9px] tracking-[0.2em] text-[#5e5a52]">{section.chapter}</span>
-                </div>
-                <div className="flex items-start justify-between gap-5 border-b border-[var(--line)] py-5">
-                  <div>
-                    <h3 className="font-editorial text-3xl tracking-[-0.035em] transition group-hover:italic">{section.name}</h3>
-                    <p className="mt-2 max-w-sm text-xs leading-6 text-[#817d73]">{section.description}</p>
-                  </div>
-                  <span className="mt-2 text-lg text-[#817d73] transition-transform duration-300 group-hover:translate-x-1">↗</span>
-                </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-12 md:gap-6">
+            {wedding.sections.map((section, index) => (
+              <Link
+                href={"/" + section.slug}
+                key={section.slug}
+                className={"chapter-card group aspect-[4/3] " + chapterLayouts[section.slug] + " " + (index === 2 ? "md:aspect-[2.55/1]" : index === 1 || index === 3 ? "md:aspect-[1/1.12]" : "md:aspect-[1.35/1]")}
+              >
+                <IKImage src={chapterCovers[section.slug]} alt="" width={1800} className="absolute inset-0 h-full w-full object-cover" />
+                <span className="chapter-card-content">
+                  <span className="chapter-card-title">{section.name}</span>
+                  <span className="chapter-card-arrow" aria-hidden="true"><ArrowUpRight size={19} strokeWidth={1.4} /></span>
+                </span>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <footer className="px-6 py-16 text-center sm:py-20">
-        <p className="text-[9px] uppercase tracking-[0.34em] text-[#817d73]">With love, always</p>
-        <p className="mt-5 font-editorial text-4xl tracking-[-0.04em] sm:text-5xl">{wedding.groom} <span className="italic text-[#8c8376]">&</span> {wedding.bride}</p>
-        <p className="mt-4 text-[9px] uppercase tracking-[0.25em] text-[#817d73]">{wedding.date} · {wedding.location}</p>
-      </footer>
+      <section className="page-shell flex min-h-[330px] flex-col items-center justify-center py-24 text-center sm:min-h-[400px]">
+        <h2 className="font-editorial text-4xl italic tracking-[-0.035em] sm:text-5xl">Thank you for being part of our story.</h2>
+        <p className="mt-5 text-sm leading-7 text-[var(--muted)]">Every photograph holds a little piece of a day we will always remember.</p>
+      </section>
+
+      <Footer />
     </main>
   );
 }
