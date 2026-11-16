@@ -1,48 +1,30 @@
+import { ArrowDown } from "lucide-react";
 import { wedding } from "@/data/wedding";
-
-const imageKitUrl =
-  process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT ??
-  process.env.IMGAE_KIT_URl ??
-  "";
+import { imageKitUrl } from "@/lib/imagekit";
 
 export default function Hero() {
+  const poster = imageKitUrl("ashber-drifa/hero/poster.jpg");
+  const video = imageKitUrl("ashber-drifa/hero/hero-video.mp4");
+
   return (
-    <section className="relative flex min-h-[680px] h-[92svh] max-h-[1100px] w-full items-center justify-center overflow-hidden bg-[#302e29] text-white">
-      {imageKitUrl ? (
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster={`${imageKitUrl}/ashber-drifa/hero/poster.jpg`}
-          className="absolute inset-0 h-full w-full object-cover"
-        >
-          <source src={`${imageKitUrl}/ashber-drifa/hero/hero-video.mp4`} type="video/mp4" />
+    <section className="relative flex min-h-[620px] h-[100svh] max-h-[1100px] w-full items-center justify-center overflow-hidden bg-[#292521] text-white">
+      {video ? (
+        <video autoPlay muted loop playsInline preload="metadata" poster={poster || undefined} aria-hidden="true" className="absolute inset-0 h-full w-full object-cover">
+          <source src={video} type="video/mp4" />
         </video>
       ) : null}
       <div className="absolute inset-0 bg-black/35" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/35" />
-
-      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-6 text-center">
-        <p className="mb-8 text-[10px] uppercase tracking-[0.42em] text-white/80 sm:text-xs">
-          The beginning of forever
+      <div className="hero-content relative z-10 mx-auto flex w-full max-w-[1200px] flex-col items-center px-6 text-center">
+        <p className="mb-7 text-[10px] font-medium uppercase tracking-[0.3em] text-white/85 sm:text-xs">
+          {wedding.date} <span className="mx-3 text-white/50">·</span> {wedding.location}, India
         </p>
-        <h1 className="font-editorial text-[clamp(4rem,12vw,9.5rem)] font-normal leading-[.88] tracking-[-0.055em]">
-          {wedding.groom}
-          <span className="mx-3 inline-block font-normal italic text-white/75 sm:mx-6">&</span>
-          {wedding.bride}
+        <h1 className="font-editorial text-[clamp(4.25rem,12vw,10.5rem)] font-normal leading-[0.82] tracking-[-0.065em]">
+          {wedding.groom}<span className="mx-3 inline-block font-normal italic text-white/75 sm:mx-7">&</span>{wedding.bride}
         </h1>
-        <div className="mt-10 flex items-center gap-4 text-[10px] uppercase tracking-[0.28em] text-white/85 sm:text-xs">
-          <span>{wedding.date}</span>
-          <span className="h-px w-7 bg-white/60" />
-          <span>{wedding.location}, India</span>
-        </div>
+        <p className="mt-9 font-editorial text-xl italic text-white/90 sm:text-2xl">A day to keep forever</p>
       </div>
-
-      <a href="#the-story" className="absolute bottom-9 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3 text-[9px] uppercase tracking-[0.3em] text-white/80">
-        Discover our story
-        <span className="h-10 w-px bg-white/60" />
+      <a href="#the-story" className="absolute bottom-8 left-1/2 z-10 flex min-h-11 -translate-x-1/2 items-center gap-3 text-[9px] font-medium uppercase tracking-[0.24em] text-white/85" aria-label="Scroll to discover the wedding story">
+        Discover the story <ArrowDown size={14} strokeWidth={1.5} />
       </a>
     </section>
   );
