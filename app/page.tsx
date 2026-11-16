@@ -28,20 +28,6 @@ export default function Home() {
       <Hero />
       <Navigation />
 
-      <section id="the-story" className="flex min-h-[560px] items-center py-24 sm:min-h-[640px] sm:py-32">
-        <div className="page-shell grid w-full gap-12 md:grid-cols-[1.2fr_0.8fr] md:items-end md:gap-20">
-          <h2 className="display-heading max-w-[850px] text-[clamp(3.5rem,8vw,7.4rem)]">
-            A day we will <span className="italic text-[var(--wine)]">keep</span> forever.
-          </h2>
-          <div className="max-w-md pb-2 md:justify-self-end">
-            <p className="text-base leading-8 text-[var(--muted)] sm:text-lg sm:leading-9">
-              The best days are made of little moments — familiar faces, happy tears, loud laughter and the people who make everything feel like home.
-            </p>
-            <p className="mt-7 font-editorial text-2xl italic text-[var(--ink)]">This is ours.</p>
-          </div>
-        </div>
-      </section>
-
       <section id="chapters" className="bg-[var(--paper-deep)] py-16 sm:py-20 lg:py-24">
         <div className="page-shell">
           <div className="mb-10 flex flex-col justify-between gap-4 sm:mb-14 sm:flex-row sm:items-end">
