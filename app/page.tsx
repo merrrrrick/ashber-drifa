@@ -42,7 +42,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="chapters" className="bg-[#eae5dc] py-16 sm:py-20 lg:py-24">
+      <section id="chapters" className="bg-[var(--paper-deep)] py-16 sm:py-20 lg:py-24">
         <div className="page-shell">
           <div className="mb-10 flex flex-col justify-between gap-4 sm:mb-14 sm:flex-row sm:items-end">
             <h2 className="display-heading text-5xl sm:text-6xl lg:text-7xl">The wedding album</h2>
