@@ -2,9 +2,14 @@
 import { useEffect, useState } from "react";
 import { ArrowDown } from "lucide-react";
 import { wedding } from "@/data/wedding";
+import { imageKitUrl } from "@/lib/imagekit";
 
-const lightHeroVideo = "https://ik.imagekit.io/lhtzzqwy3/ashber-drifa/hero/hero-section2.mov/ik-video.mp4?updatedAt=1794844655990";
-const darkHeroVideo = "https://ik.imagekit.io/lhtzzqwy3/ashber-drifa/hero/hero-section1.mov/ik-video.mp4?updatedAt=1794844629931";
+const lightHeroVideo = imageKitUrl(
+  "ashber-drifa/hero/hero-section2.mov/ik-video.mp4"
+);
+const darkHeroVideo = imageKitUrl(
+  "ashber-drifa/hero/hero-section1.mov/ik-video.mp4"
+);
 
 export default function Hero() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
@@ -30,7 +35,7 @@ export default function Hero() {
         </h1>
         <p className="mt-4 font-editorial text-lg tracking-[0.12em] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)] sm:text-2xl">8.8.2025</p>
       </div>
-      <a href="#the-story" className="absolute bottom-8 left-1/2 z-20 flex min-h-11 -translate-x-1/2 items-center gap-3 text-[9px] font-medium uppercase tracking-[0.24em] text-white/90" aria-label="Scroll to discover the wedding story">
+      <a href="#chapters" className="absolute bottom-8 left-1/2 z-20 flex min-h-11 -translate-x-1/2 items-center gap-3 text-[9px] font-medium uppercase tracking-[0.24em] text-white/90" aria-label="Scroll to discover the wedding album">
         Discover the story <ArrowDown size={14} strokeWidth={1.5} />
       </a>
     </section>
