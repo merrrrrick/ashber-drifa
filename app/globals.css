@@ -10,6 +10,19 @@
   --wine: #713e43;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #191715;
+  --paper-deep: #25211e;
+  --ink: #f1ece4;
+  --muted: #b4aaa0;
+  --line: #403832;
+  --wine: #c18b91;
+}
+
+html { color-scheme: light; }
+html[data-theme="dark"] { color-scheme: dark; }
 @theme inline {
   --color-background: var(--paper);
   --color-foreground: var(--ink);
@@ -75,4 +88,28 @@ button { font: inherit; touch-action: manipulation; }
   .hero-content { animation: none; }
   .chapter-card, .chapter-card img, .chapter-card-arrow, .chapter-card::after, .gallery-item img, .gallery-featured img, .nav-link::after { transition-duration: 120ms; }
   .chapter-card:hover, .chapter-card:hover img, .chapter-card:hover .chapter-card-arrow, .gallery-item:hover img, .gallery-featured:hover img { transform: none; }
+}
+
+
+/* Responsive portrait-video hero: the blurred duplicate fills wide screens. */
+.hero-video-ambient {
+  filter: blur(30px) brightness(0.48) saturate(0.82);
+  transform: scale(1.13);
+}
+.hero-video-portrait {
+  filter: drop-shadow(0 12px 42px rgb(0 0 0 / 24%));
+}
+:root[data-theme="dark"] .hero-video-ambient {
+  filter: blur(32px) brightness(0.38) saturate(0.72);
+}
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 3px;
+}
+@media (max-width: 639px) {
+  .hero-video-ambient { filter: blur(24px) brightness(0.38); }
+  .hero-video-portrait { filter: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-video-ambient { transform: none; }
 }
