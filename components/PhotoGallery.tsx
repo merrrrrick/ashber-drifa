@@ -9,6 +9,7 @@ interface PhotoGalleryProps { images: string[]; variant: string; }
 
 export default function PhotoGallery({ images, variant }: PhotoGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const close = useCallback(() => setActiveIndex(null), []);
   const previous = useCallback(() => {
     setActiveIndex((current) => current === null ? null : (current - 1 + images.length) % images.length);
   }, [images.length]);
@@ -41,7 +42,7 @@ export default function PhotoGallery({ images, variant }: PhotoGalleryProps) {
       </div>
       <AnimatePresence>
         {activeIndex !== null ? (
-          <Lightbox key="wedding-lightbox" images={images} activeIndex={activeIndex} onClose={() => setActiveIndex(null)} onPrevious={previous} onNext={next} />
+          <Lightbox key="wedding-lightbox" images={images} activeIndex={activeIndex} onClose={close} onPrevious={previous} onNext={next} />
         ) : null}
       </AnimatePresence>
     </>
