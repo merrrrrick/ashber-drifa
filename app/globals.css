@@ -33,7 +33,7 @@ button { font: inherit; touch-action: manipulation; }
 .nav-link::after { position: absolute; right: 0; bottom: -5px; left: 0; height: 1px; background: var(--wine); content: ""; transform: scaleX(0); transform-origin: left; transition: transform 180ms var(--ease-out); }
 .nav-link[aria-current="page"]::after { transform: scaleX(1); }
 .chapter-card { position: relative; display: block; overflow: hidden; background: var(--paper-deep); isolation: isolate; transition: transform 180ms var(--ease-out); }
-.chapter-card::after { position: absolute; inset: 0; z-index: 1; background: rgb(22 18 16 / 24%); content: ""; pointer-events: none; transition: opacity 220ms ease; }
+.chapter-card::after { position: absolute; inset: 0; z-index: 1; background: rgb(22 18 16 / 34%); content: ""; pointer-events: none; transition: opacity 220ms ease; }
 .chapter-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 900ms var(--ease-out); }
 .chapter-card-content { position: absolute; z-index: 2; right: 26px; bottom: 24px; left: 26px; display: flex; align-items: end; justify-content: space-between; gap: 16px; color: #fff; }
 .chapter-card-title { font-family: var(--font-display), Georgia, serif; font-size: clamp(2rem, 4vw, 3.8rem); font-weight: 400; letter-spacing: -0.035em; line-height: 0.98; text-shadow: 0 1px 18px rgb(0 0 0 / 20%); }
@@ -47,9 +47,9 @@ button { font: inherit; touch-action: manipulation; }
 }
 .chapter-card:active { transform: scale(0.99); }
 .gallery-columns { columns: 1; column-gap: 22px; }
-.gallery-item { display: block; width: 100%; margin: 0 0 22px; break-inside: avoid; overflow: hidden; background: var(--paper-deep); cursor: zoom-in; }
+.gallery-item { display: block; width: 100%; margin: 0 0 22px; padding: 0; border: 0; break-inside: avoid; overflow: hidden; background: var(--paper-deep); cursor: zoom-in; }
 .gallery-item img { display: block; width: 100%; height: auto; transition: transform 700ms var(--ease-out); }
-.gallery-featured { display: block; width: 100%; margin: 0 auto 28px; overflow: hidden; background: var(--paper-deep); cursor: zoom-in; }
+.gallery-featured { display: block; width: 100%; margin: 0 auto 28px; padding: 0; border: 0; overflow: hidden; background: var(--paper-deep); cursor: zoom-in; }
 .gallery-featured img { display: block; width: 100%; height: auto; }
 .gallery-featured--narrow { max-width: 1120px; }
 .gallery--bride { column-gap: 28px; }
@@ -74,5 +74,5 @@ button { font: inherit; touch-action: manipulation; }
   html { scroll-behavior: auto; }
   .hero-content { animation: none; }
   .chapter-card, .chapter-card img, .chapter-card-arrow, .chapter-card::after, .gallery-item img, .gallery-featured img, .nav-link::after { transition-duration: 120ms; }
-  .chapter-card:hover, .chapter-card:hover img, .gallery-item:hover img, .gallery-featured:hover img { transform: none; }
+  .chapter-card:hover, .chapter-card:hover img, .chapter-card:hover .chapter-card-arrow, .gallery-item:hover img, .gallery-featured:hover img { transform: none; }
 }
