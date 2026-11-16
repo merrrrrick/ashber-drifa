@@ -35,7 +35,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `try { const saved = localStorage.getItem("ashber-drifa-theme"); if (saved === "dark" || saved === "light") document.documentElement.dataset.theme = saved; } catch {}` }} />
+      </head>
       <body className={`${display.variable} ${body.variable}`}>{children}</body>
     </html>
   );
