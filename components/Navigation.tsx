@@ -11,7 +11,10 @@ const lightMonogramUrl = imageKitUrl(
   "ashber-drifa/hero/monogram.png",
   "w-240,h-240,q-90,f-auto"
 );
-const darkMonogramUrl = "https://ik.imagekit.io/lhtzzqwy3/ashber-drifa/hero/monogram_white.png";
+const darkMonogramUrl = imageKitUrl(
+  "ashber-drifa/hero/monogram_white.png",
+  "w-240,h-240,q-90,f-auto"
+);
 
 export default function Navigation() {
   const pathname = usePathname();
