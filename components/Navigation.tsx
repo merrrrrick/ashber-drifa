@@ -1,20 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { wedding } from "@/data/wedding";
 import { imageKitUrl } from "@/lib/imagekit";
 import ThemeToggle from "@/components/ThemeToggle";
 
-const monogramUrl = imageKitUrl(
+const lightMonogramUrl = imageKitUrl(
   "ashber-drifa/hero/monogram.png",
   "w-240,h-240,q-90,f-auto"
 );
+const darkMonogramUrl = "https://ik.imagekit.io/lhtzzqwy3/ashber-drifa/hero/monogram_white.png";
 
 export default function Navigation() {
   const pathname = usePathname();
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const [monogramFailed, setMonogramFailed] = useState(false);
+
+  useEffect(() => {
+    const syncTheme = () => {
+      setTheme(document.documentElement.dataset.theme === "dark" ? "dark" : "light");
+      setMonogramFailed(false);
+    };
+    syncTheme();
+    window.addEventListener("theme-change", syncTheme);
+    return () => window.removeEventListener("theme-change", syncTheme);
+  }, []);
+
+  const monogramUrl = theme === "dark" ? darkMonogramUrl : lightMonogramUrl;
 
   return (
     <nav aria-label="Wedding album chapters" className="site-nav sticky top-0 z-50">
