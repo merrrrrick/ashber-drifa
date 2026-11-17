@@ -90,8 +90,7 @@ button { font: inherit; touch-action: manipulation; }
   .chapter-card:hover, .chapter-card:hover img, .chapter-card:hover .chapter-card-arrow, .gallery-item:hover img, .gallery-featured:hover img { transform: none; }
 }
 
-
-/* Responsive portrait-video hero: the blurred duplicate fills wide screens. */
+/* The ambient video remains as the hero background on every screen. */
 .hero-video-ambient {
   filter: blur(30px) brightness(0.48) saturate(0.82);
   transform: scale(1.13);
@@ -105,6 +104,11 @@ button { font: inherit; touch-action: manipulation; }
 .theme-toggle:focus-visible {
   outline: 2px solid var(--wine);
   outline-offset: 3px;
+}
+@media (min-width: 640px) {
+  .hero-video-portrait { display: none; }
+  .hero-video-ambient { filter: blur(9px) brightness(0.48) saturate(0.82); }
+  :root[data-theme="dark"] .hero-video-ambient { filter: blur(10px) brightness(0.38) saturate(0.72); }
 }
 @media (max-width: 639px) {
   .hero-video-ambient { filter: blur(24px) brightness(0.38); }
