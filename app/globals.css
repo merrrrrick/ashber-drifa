@@ -107,8 +107,8 @@ button { font: inherit; touch-action: manipulation; }
 }
 @media (min-width: 640px) {
   .hero-video-portrait { display: none; }
-  .hero-video-ambient { filter: blur(9px) brightness(0.48) saturate(0.82); object-position: center 25%; }
-  :root[data-theme="dark"] .hero-video-ambient { filter: blur(10px) brightness(0.38) saturate(0.72); object-position: center 25%; }
+  .hero-video-ambient { filter: blur(9px) brightness(0.48) saturate(0.82); }
+  :root[data-theme="dark"] .hero-video-ambient { filter: blur(10px) brightness(0.38) saturate(0.72); }
 }
 @media (max-width: 639px) {
   .hero-video-ambient { filter: blur(24px) brightness(0.38); }
