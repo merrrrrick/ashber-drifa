@@ -54,7 +54,7 @@ export function ScrollVelocityContainer({
 
 export function ScrollVelocityRow({
   children,
-  baseVelocity = 5,
+  baseVelocity = 2,
   direction = 1,
   scrollReactivity = true,
   className,
@@ -73,8 +73,12 @@ export function ScrollVelocityRow({
     }
 
     const velocity = scrollReactivity ? (scrollVelocity?.get() ?? 0) : 0;
-    if (velocity < -5) directionFactor.current = -1;
-    else if (velocity > 5) directionFactor.current = 1;
+    const scrollDirection: 1 | -1 =
+      velocity < -5 ? -1 : velocity > 5 ? 1 : 1;
+
+    // Apply the same scroll influence to each row's own direction so
+    // the two rows remain opposite to one another at all times.
+    directionFactor.current = direction * scrollDirection;
 
     const velocityBoost = scrollReactivity
       ? Math.min(Math.abs(velocity) / 1200, 2.5)
