@@ -60,7 +60,8 @@ export function ScrollVelocityRow({
   className,
 }: ScrollVelocityRowProps) {
   const scrollVelocity = useContext(ScrollVelocityContext);
-  const baseX = useMotionValue(0);
+  // Begin halfway through the repeated track so the rows feel centered on load.
+  const baseX = useMotionValue(-25);
   const prefersReducedMotion = useReducedMotion();
   const directionFactor = useRef<1 | -1>(direction);
   const lastScrollDirection = useRef<1 | -1>(1);
