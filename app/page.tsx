@@ -40,7 +40,7 @@ export default function Home() {
               <Link
                 href={"/" + section.slug}
                 key={section.slug}
-                className={"chapter-card group aspect-[4/3] " + chapterLayouts[section.slug] + " " + (index === 2 ? "md:aspect-[2.55/1]" : index === 1 || index === 3 ? "md:aspect-[1/1.12]" : "md:aspect-[1.35/1]")}
+                className={"chapter-card group aspect-[4/3] " + chapterLayouts[section.slug] + " " + (index === 2 ? "md:aspect-[2.55/1]" : "md:aspect-auto md:h-[340px] lg:h-[420px]")}
               >
                 <IKImage src={chapterCovers[section.slug]} alt="" width={1800} className="absolute inset-0 h-full w-full object-cover" />
                 <span className="chapter-card-content">
