@@ -4,22 +4,31 @@ import {
   ScrollVelocityContainer,
   ScrollVelocityRow,
 } from "@/registry/magicui/scroll-based-velocity";
+import { imageKitUrl } from "@/lib/imagekit";
 
-const IMAGE_A =
-  "https://images.unsplash.com/photo-1749738456487-2af715ab65ea?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-const IMAGE_B =
-  "https://plus.unsplash.com/premium_photo-1720139288219-e20aa9c8895b?q=80&w=1810&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+const IMAGES_ROW_A = [
+  "wedding/groom/001.jpg",
+  "wedding/groom/002.jpg",
+  "wedding/groom/003.jpg",
+  "wedding/groom/004.jpg",
+  "wedding/groom/005.jpg",
+];
 
-const IMAGES_ROW_A = [IMAGE_A, IMAGE_B];
-const IMAGES_ROW_B = [IMAGE_B, IMAGE_A];
+const IMAGES_ROW_B = [
+  "wedding/bride/001.jpg",
+  "wedding/bride/002.jpg",
+  "wedding/bride/003.jpg",
+  "wedding/bride/004.jpg",
+  "wedding/bride/005.jpg",
+];
 
 function ImageRow({ images }: { images: string[] }) {
   return (
     <>
-      {images.map((src, idx) => (
+      {images.map((src) => (
         <img
-          key={idx}
-          src={src}
+          key={src}
+          src={imageKitUrl(src, "w-720,h-480,c-maintain_ratio,q-85,f-auto")}
           alt="Wedding celebration"
           width={360}
           height={240}
