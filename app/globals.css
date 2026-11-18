@@ -117,3 +117,27 @@ button { font: inherit; touch-action: manipulation; }
 @media (prefers-reduced-motion: reduce) {
   .hero-video-ambient { transform: none; }
 }
+
+/* Theme-aware page scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) var(--paper);
+}
+html::-webkit-scrollbar {
+  width: 10px;
+}
+html::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+html::-webkit-scrollbar-thumb {
+  min-height: 36px;
+  border: 2px solid var(--paper);
+  border-radius: 999px;
+  background: var(--line);
+}
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+html::-webkit-scrollbar-corner {
+  background: var(--paper);
+}
