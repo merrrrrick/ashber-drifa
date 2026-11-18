@@ -78,7 +78,7 @@ export function ScrollVelocityRow({
 
     // Apply the same scroll influence to each row's own direction so
     // the two rows remain opposite to one another at all times.
-    directionFactor.current = direction * scrollDirection;
+    directionFactor.current = direction === scrollDirection ? 1 : -1;
 
     const velocityBoost = scrollReactivity
       ? Math.min(Math.abs(velocity) / 1200, 2.5)
