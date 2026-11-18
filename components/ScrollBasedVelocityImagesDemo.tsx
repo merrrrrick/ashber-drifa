@@ -36,10 +36,10 @@ export default function ScrollBasedVelocityImagesDemo() {
   return (
     <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-5 sm:py-8">
       <ScrollVelocityContainer className="w-full">
-        <ScrollVelocityRow baseVelocity={6} direction={1} className="py-2 sm:py-3">
+        <ScrollVelocityRow baseVelocity={2} direction={1} className="py-2 sm:py-3">
           <ImageRow images={IMAGES_ROW_A} />
         </ScrollVelocityRow>
-        <ScrollVelocityRow baseVelocity={6} direction={-1} className="py-2 sm:py-3">
+        <ScrollVelocityRow baseVelocity={2} direction={-1} className="py-2 sm:py-3">
           <ImageRow images={IMAGES_ROW_B} />
         </ScrollVelocityRow>
       </ScrollVelocityContainer>
