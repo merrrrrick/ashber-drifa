@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import IKImage from "@/components/IKImage";
 import Footer from "@/components/Footer";
 import { wedding } from "@/data/wedding";
+import ScrollBasedVelocityImagesDemo from "@/components/ScrollBasedVelocityImagesDemo";
 
 const chapterCovers: Record<string, string> = {
   groom: "wedding/groom/001.jpg",
@@ -55,7 +56,7 @@ export default function Home() {
 
       <section className="page-shell flex min-h-[330px] flex-col items-center justify-center py-24 text-center sm:min-h-[400px]">
         <h2 className="font-editorial text-4xl italic tracking-[-0.035em] sm:text-5xl">Thank you for being part of our story.</h2>
-        <p className="mt-5 text-sm leading-7 text-[var(--muted)]">Every photograph holds a little piece of a day we will always remember.</p>
+        <div className="mt-5 w-screen max-w-none"><ScrollBasedVelocityImagesDemo /></div>
       </section>
 
       <Footer />
