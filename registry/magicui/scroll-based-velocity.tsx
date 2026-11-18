@@ -10,6 +10,8 @@ import {
   motion,
   useAnimationFrame,
   useInView,
+  useMotionValue,
+  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -58,16 +60,15 @@ export function ScrollVelocityRow({
   className,
 }: ScrollVelocityRowProps) {
   const scrollVelocity = useContext(ScrollVelocityContext);
-  const baseX = useRef(0);
+  const baseX = useMotionValue(0);
+  const prefersReducedMotion = useReducedMotion();
   const directionFactor = useRef(direction);
   const rowRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(rowRef, { once: false });
-  const x = useTransform(
-    () => `${wrap(-50, 0, baseX.current)}%`,
-  );
+  const x = useTransform(baseX, (value) => `${wrap(-50, 0, value)}%`);
 
   useAnimationFrame((_, delta) => {
-    if (!isInView || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (!isInView || prefersReducedMotion) {
       return;
     }
 
@@ -84,7 +85,7 @@ export function ScrollVelocityRow({
       (1 + velocityBoost) *
       (delta / 1000);
 
-    baseX.current = wrap(-50, 0, baseX.current + movement);
+    baseX.set(wrap(-50, 0, baseX.get() + movement));
   });
 
   return (
