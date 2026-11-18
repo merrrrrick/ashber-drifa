@@ -10,8 +10,8 @@ const IMAGE_A =
 const IMAGE_B =
   "https://plus.unsplash.com/premium_photo-1720139288219-e20aa9c8895b?q=80&w=1810&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-const IMAGES_ROW_A = [IMAGE_A, IMAGE_B, IMAGE_A, IMAGE_B];
-const IMAGES_ROW_B = [IMAGE_B, IMAGE_A, IMAGE_B, IMAGE_A];
+const IMAGES_ROW_A = [IMAGE_A, IMAGE_B];
+const IMAGES_ROW_B = [IMAGE_B, IMAGE_A];
 
 function ImageRow({ images }: { images: string[] }) {
   return (
