@@ -62,7 +62,7 @@ export function ScrollVelocityRow({
   const scrollVelocity = useContext(ScrollVelocityContext);
   const baseX = useMotionValue(0);
   const prefersReducedMotion = useReducedMotion();
-  const directionFactor = useRef(direction);
+  const directionFactor = useRef<1 | -1>(direction);
   const rowRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(rowRef, { once: false });
   const x = useTransform(baseX, (value) => `${wrap(-50, 0, value)}%`);
@@ -73,8 +73,8 @@ export function ScrollVelocityRow({
     }
 
     const velocity = scrollReactivity ? (scrollVelocity?.get() ?? 0) : 0;
-    if (velocity < -5) directionFactor.current = -Math.abs(direction);
-    else if (velocity > 5) directionFactor.current = Math.abs(direction);
+    if (velocity < -5) directionFactor.current = -1;
+    else if (velocity > 5) directionFactor.current = 1;
 
     const velocityBoost = scrollReactivity
       ? Math.min(Math.abs(velocity) / 1200, 2.5)
