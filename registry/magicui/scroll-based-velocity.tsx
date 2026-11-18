@@ -63,6 +63,7 @@ export function ScrollVelocityRow({
   const baseX = useMotionValue(0);
   const prefersReducedMotion = useReducedMotion();
   const directionFactor = useRef<1 | -1>(direction);
+  const lastScrollDirection = useRef<1 | -1>(1);
   const rowRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(rowRef, { once: false });
   const x = useTransform(baseX, (value) => `${wrap(-50, 0, value)}%`);
@@ -73,12 +74,18 @@ export function ScrollVelocityRow({
     }
 
     const velocity = scrollReactivity ? (scrollVelocity?.get() ?? 0) : 0;
-    const scrollDirection: 1 | -1 =
-      velocity < -5 ? -1 : velocity > 5 ? 1 : 1;
+    // Remember the most recent intentional scroll direction. When scrolling
+    // stops, keep the last direction instead of snapping back to the default.
+    if (velocity < -5) {
+      lastScrollDirection.current = -1;
+    } else if (velocity > 5) {
+      lastScrollDirection.current = 1;
+    }
 
-    // Apply the same scroll influence to each row's own direction so
+    // Apply the remembered direction to each row's own direction so
     // the two rows remain opposite to one another at all times.
-    directionFactor.current = direction === scrollDirection ? 1 : -1;
+    directionFactor.current =
+      direction === lastScrollDirection.current ? 1 : -1;
 
     const velocityBoost = scrollReactivity
       ? Math.min(Math.abs(velocity) / 1200, 2.5)
