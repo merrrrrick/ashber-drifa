@@ -148,6 +148,12 @@ html::-webkit-scrollbar-corner {
   display: inline-block;
   isolation: isolate;
 }
+.hero-title-rolling::before {
+  display: block;
+  content: attr(data-title);
+  visibility: hidden;
+  white-space: nowrap;
+}
 .hero-title-slice {
   position: absolute;
   inset: 0;
