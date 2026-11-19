@@ -29,3 +29,39 @@
 @media (prefers-reduced-motion: reduce) {
   .g-l.roll .g-col { animation: none; }
 }
+
+/* Number wheels for the hero wedding date */
+.g-date {
+  --date-h: 1.15em;
+  display: inline-flex;
+  align-items: flex-start;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.g-date-digit {
+  display: inline-block;
+  height: var(--date-h);
+  overflow: hidden;
+  vertical-align: top;
+  line-height: var(--date-h);
+}
+.g-date-wheel { display: block; }
+.g-date-wheel > span {
+  display: block;
+  height: var(--date-h);
+  line-height: var(--date-h);
+}
+.g-date-roll .g-date-wheel {
+  animation: g-date-roll var(--t) var(--d) cubic-bezier(.16, 1, .3, 1) both;
+}
+.g-date-separator {
+  display: inline-block;
+  line-height: var(--date-h);
+}
+@keyframes g-date-roll {
+  from { transform: translateY(calc(-100% * 10 / 11)); }
+  to { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .g-date-roll .g-date-wheel { animation: none; }
+}

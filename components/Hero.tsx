@@ -4,6 +4,7 @@ import { ArrowDown } from "lucide-react";
 import { wedding } from "@/data/wedding";
 import { imageKitUrl } from "@/lib/imagekit";
 import GlitchTitle from "@/components/GlitchTitle";
+import RollingDate from "@/components/RollingDate";
 
 const lightHeroVideo = imageKitUrl(
   "ashber-drifa/hero/hero-section2.mov/ik-video.mp4"
@@ -35,7 +36,7 @@ export default function Hero() {
           text={`${wedding.groom.toUpperCase()} & ${wedding.bride.toUpperCase()}`}
           className="font-editorial text-[clamp(2.65rem,8vw,7.5rem)] font-normal leading-[0.9] tracking-[-0.045em] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]"
         />
-        <p className="mt-4 font-editorial text-lg tracking-[0.12em] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)] sm:text-2xl">8.8.2025</p>
+        <RollingDate date="8.8.2025" className="mt-4 font-editorial text-lg tracking-[0.12em] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)] sm:text-2xl" />
       </div>
       <a href="#chapters" className="absolute bottom-8 left-1/2 z-20 flex min-h-11 -translate-x-1/2 items-center gap-3 text-[9px] font-medium uppercase tracking-[0.24em] text-white/90" aria-label="Scroll to discover the wedding album">
         Discover the story <ArrowDown size={14} strokeWidth={1.5} />
