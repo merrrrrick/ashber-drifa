@@ -17,6 +17,7 @@ export default function GlitchTitle({ text, className = "" }: Props) {
         const n = roll ? 4 + Math.floor(rnd(i, 2) * 11) : 1;
         const style = {
           "--n": n,
+          "--start": `${-((n - 1) / n) * 100}%`,
           "--d": `${(i * 0.05 + rnd(i, 3) * 0.25).toFixed(2)}s`,
           "--t": `${(1.6 + rnd(i, 4)).toFixed(2)}s`,
         } as CSSProperties;
