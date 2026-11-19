@@ -4,6 +4,7 @@
   position: relative;
   display: inline-block;
   margin: 0;
+  white-space: nowrap;
   letter-spacing: .02em;
 }
 .g-l {
@@ -23,7 +24,7 @@
   animation: g-roll var(--t) var(--d) cubic-bezier(.16, 1, .3, 1) both;
 }
 @keyframes g-roll {
-  from { transform: translateY(calc(-100% * (var(--n) - 1) / var(--n))); }
+  from { transform: translateY(var(--start)); }
   to { transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -33,6 +34,7 @@
 /* Number wheels for the hero wedding date */
 .g-date {
   --date-h: 1.15em;
+  line-height: var(--date-h);
   display: inline-flex;
   align-items: flex-start;
   margin: 0;
@@ -59,8 +61,8 @@
   line-height: var(--date-h);
 }
 @keyframes g-date-roll {
-  from { transform: translateY(calc(-100% * 10 / 11)); }
-  to { transform: none; }
+  from { transform: translateY(0); }
+  to { transform: translateY(var(--end)); }
 }
 @media (prefers-reduced-motion: reduce) {
   .g-date-roll .g-date-wheel { animation: none; }
