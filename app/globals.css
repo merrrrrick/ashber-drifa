@@ -141,3 +141,33 @@ html::-webkit-scrollbar-thumb:hover {
 html::-webkit-scrollbar-corner {
   background: var(--paper);
 }
+
+/* Horizontal slices roll into place for the hero title. */
+.hero-title-rolling {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+.hero-title-slice {
+  position: absolute;
+  inset: 0;
+  display: block;
+  white-space: nowrap;
+  backface-visibility: hidden;
+  animation: hero-title-roll 1.35s var(--ease-out) both;
+}
+.hero-title-slice:nth-child(1) { clip-path: inset(0 0 80% 0); animation-delay: 0ms; }
+.hero-title-slice:nth-child(2) { clip-path: inset(20% 0 60% 0); animation-delay: 55ms; }
+.hero-title-slice:nth-child(3) { clip-path: inset(40% 0 40% 0); animation-delay: 110ms; }
+.hero-title-slice:nth-child(4) { clip-path: inset(60% 0 20% 0); animation-delay: 165ms; }
+.hero-title-slice:nth-child(5) { clip-path: inset(80% 0 0 0); animation-delay: 220ms; }
+.hero-title-slice-up { transform: translateY(115%) rotateX(-18deg); }
+.hero-title-slice-down { transform: translateY(-115%) rotateX(18deg); }
+@keyframes hero-title-roll {
+  0% { opacity: 0; filter: blur(5px); }
+  35% { opacity: 1; filter: blur(1px); }
+  100% { opacity: 1; filter: blur(0); transform: translateY(0) rotateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-slice { animation: none; transform: none; filter: none; }
+}
