@@ -30,8 +30,15 @@ export default function Hero() {
         <source src={video} type="video/mp4" />
       </video>
       <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center">
-        <h1 className="font-editorial text-[clamp(2.65rem,8vw,7.5rem)] font-normal leading-[0.9] tracking-[-0.045em] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]">
-          {wedding.groom.toUpperCase()} <span className="font-normal italic text-white/85">&</span> {wedding.bride.toUpperCase()}
+        <h1
+          className="hero-title-rolling font-editorial text-[clamp(2.65rem,8vw,7.5rem)] font-normal leading-[0.9] tracking-[-0.045em] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]"
+          aria-label={wedding.groom + " and " + wedding.bride}
+        >
+          {Array.from({ length: 5 }, (_, index) => (
+            <span key={index} aria-hidden="true" className={index % 2 === 0 ? "hero-title-slice hero-title-slice-up" : "hero-title-slice hero-title-slice-down"}>
+              {wedding.groom.toUpperCase()} <span className="font-normal italic text-white/85">&</span> {wedding.bride.toUpperCase()}
+            </span>
+          ))}
         </h1>
         <p className="mt-4 font-editorial text-lg tracking-[0.12em] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)] sm:text-2xl">8.8.2025</p>
       </div>
