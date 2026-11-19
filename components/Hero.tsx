@@ -34,7 +34,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center">
         <GlitchTitle
           text={`${wedding.groom.toUpperCase()} & ${wedding.bride.toUpperCase()}`}
-          className="font-editorial text-[clamp(1.65rem,7.4vw,7.5rem)] font-normal leading-[0.9] tracking-[-0.045em] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]"
+          className="font-editorial text-[clamp(1.9rem,8.2vw,7.5rem)] font-normal leading-[0.9] tracking-[-0.045em] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]"
         />
         <RollingDate date="8.8.2025" className="mt-4 font-editorial text-lg tracking-[0.12em] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)] sm:text-2xl" />
       </div>
