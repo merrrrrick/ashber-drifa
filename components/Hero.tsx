@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { ArrowDown } from "lucide-react";
 import { wedding } from "@/data/wedding";
 import { imageKitUrl } from "@/lib/imagekit";
+import GlitchTitle from "@/components/GlitchTitle";
 
 const lightHeroVideo = imageKitUrl(
   "ashber-drifa/hero/hero-section2.mov/ik-video.mp4"
@@ -30,9 +31,10 @@ export default function Hero() {
         <source src={video} type="video/mp4" />
       </video>
       <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center">
-        <h1 className="font-editorial text-[clamp(2.65rem,8vw,7.5rem)] font-normal leading-[0.9] tracking-[-0.045em] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]">
-          {wedding.groom.toUpperCase()} <span className="font-normal italic text-white/85">&</span> {wedding.bride.toUpperCase()}
-        </h1>
+        <GlitchTitle
+          text={`${wedding.groom.toUpperCase()} & ${wedding.bride.toUpperCase()}`}
+          className="font-editorial text-[clamp(2.65rem,8vw,7.5rem)] font-normal leading-[0.9] tracking-[-0.045em] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]"
+        />
         <p className="mt-4 font-editorial text-lg tracking-[0.12em] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)] sm:text-2xl">8.8.2025</p>
       </div>
       <a href="#chapters" className="absolute bottom-8 left-1/2 z-20 flex min-h-11 -translate-x-1/2 items-center gap-3 text-[9px] font-medium uppercase tracking-[0.24em] text-white/90" aria-label="Scroll to discover the wedding album">
