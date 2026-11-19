@@ -1,0 +1,31 @@
+/* Stacked-letter rolling title animation */
+.g-title {
+  --g-h: .8em;
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  letter-spacing: .02em;
+}
+.g-l {
+  display: inline-block;
+  height: var(--g-h);
+  overflow: hidden;
+  vertical-align: top;
+  white-space: pre;
+}
+.g-col { display: block; }
+.g-col > span {
+  display: block;
+  height: var(--g-h);
+  line-height: var(--g-h);
+}
+.g-l.roll .g-col {
+  animation: g-roll var(--t) var(--d) cubic-bezier(.16, 1, .3, 1) both;
+}
+@keyframes g-roll {
+  from { transform: translateY(calc(-100% * (var(--n) - 1) / var(--n))); }
+  to { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .g-l.roll .g-col { animation: none; }
+}
