@@ -33,6 +33,7 @@ export default function Hero() {
         <h1
           className="hero-title-rolling font-editorial text-[clamp(2.65rem,8vw,7.5rem)] font-normal leading-[0.9] tracking-[-0.045em] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]"
           aria-label={wedding.groom + " and " + wedding.bride}
+          data-title={wedding.groom.toUpperCase() + " & " + wedding.bride.toUpperCase()}
         >
           {Array.from({ length: 5 }, (_, index) => (
             <span key={index} aria-hidden="true" className={index % 2 === 0 ? "hero-title-slice hero-title-slice-up" : "hero-title-slice hero-title-slice-down"}>
